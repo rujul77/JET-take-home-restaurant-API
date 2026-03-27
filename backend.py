@@ -7,31 +7,46 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def home():
     restaurants = []
+    error = None
     if request.method == "POST":
         postcode = request.form.get("postcode").strip().replace(" ", "") #if something like abcd 123 it becomes abcd123
 
-        #our api link
-        api_link = f"https://uk.api.just-eat.io/discovery/uk/restaurants/enriched/bypostcode/{postcode}"
-
-        #without this - 403 cloudflare error
-        headers = {"User-Agent": "Mozilla/5.0"}
-    
-        #raw data from api stored here
-        get_api = requests.get(api_link, headers=headers)
-        finalData = get_api.json() #turn into json format
-
-        #loop through and get name, cuisine, address and rating
-        for restaurant in finalData.get("restaurants", [])[:10]:
-            cuisines = ", ".join(cuisine["name"] for cuisine in restaurant.get("cuisines", []))
-            restaurants.append({
-                "name": restaurant["name"],
-                "cuisines": cuisines,
-                "rating": f'{restaurant["rating"]["starRating"]} ({restaurant["rating"]["count"]})',
-                "address": f'{restaurant["address"]["firstLine"]}, {restaurant["address"]["postalCode"]}',
-                "logo": restaurant.get("logoUrl")
-                })
+        if not postcode:
+            error = "Please enter a postcode!"
         
-    return render_template("index.html", restaurants=restaurants)
+        else:
+            #our api link
+            api_link = f"https://uk.api.just-eat.io/discovery/uk/restaurants/enriched/bypostcode/{postcode}"
+            #without this - 403 cloudflare error
+            headers = {"User-Agent": "Mozilla/5.0"}
+
+            try:
+                #raw data from api stored here
+                get_api = requests.get(api_link, headers=headers)
+                finalData = get_api.json() #turn into json format
+                unfiltered_restaurant = finalData.get("restaurants", [])[:10]
+
+                if not unfiltered_restaurant:
+                    error = "No restaurants found for that postcode!"
+                else:
+                    for restaurant in unfiltered_restaurant:
+                        cuisines = ", ".join(cuisine["name"] for cuisine in restaurant["cuisines"])
+                        restaurants.append({
+                            "name":restaurant["name"],
+
+                            "cuisines": cuisines,
+
+                            "address": f'{restaurant["address"]["firstLine"], restaurant["address"]["postalCode"]}',
+
+                            "rating": f'{restaurant["rating"]["starRating"]}({restaurant["rating"]["count"]})',
+
+                            "logo": restaurant["logoUrl"]
+                        })
+
+            except:
+                error = "Something went wrong!"
+        
+    return render_template("index.html", restaurants=restaurants, error=error)
     
 if __name__ == "__main__":
     app.run(debug=True) 
