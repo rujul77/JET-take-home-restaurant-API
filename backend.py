@@ -24,10 +24,11 @@ def home():
         for restaurant in finalData.get("restaurants", [])[:10]:
             cuisines = ", ".join(c["name"] for c in restaurant.get("cuisines", []))
             restaurants.append({
-                "name": restaurants["name"],
+                "name": restaurant["name"],
                 "cuisines": cuisines,
-                "rating": restaurants["rating"]["starRating"],
-                "address": f"{restaurants["address"]["firstLine"]}, {restaurants["address"]["postalCode"]}" 
+                "rating": restaurant["rating"]["starRating"],
+                "address": f'{restaurant["address"]["firstLine"]}, {restaurant["address"]["postalCode"]}',
+                "logo": restaurant.get("logoUrl")
                 })
         
     return render_template("index.html", restaurants=restaurants)
