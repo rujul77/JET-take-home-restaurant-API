@@ -8,14 +8,17 @@ def restaurant_list(postcode):
     headers = {"User-Agent": "Mozilla/5.0"}
 
     get_api = requests.get(api_link, headers=headers, timeout=10) #dont wait forever for server
+    
     #if unable to get api data - cause an error and stop the program
     get_api.raise_for_status()
+    
     final_data = get_api.json() #raw data into json
 
     restaurants = []
     
+    #loop logic to store all information we need to show
     for restaurant in final_data.get("restaurants")[:10]: #only the first 10 restaurant keys        
-        cuisines = "".strip(",")
+        cuisines = ""
         for cuisine in restaurant["cuisines"]:
             cuisines+= cuisine.get("name") + ", "
         restaurants.append({
