@@ -36,10 +36,8 @@
         {% for restaurant in restaurants %}
         <div class="col">
             <div class="card h-80 shadow-sm rounded-5" style="background-color: #5c5b5b;">
-                {% if restaurant["logo"] %}
                 <img src="{{ restaurant['logo'] }}" class="card-img-top p-3" alt="{{ restaurant['name'] }} logo"
                 style="height: 100px; object-fit: contain;">
-                {% endif %}
                 <div class="card-body">
                     <h5 class="card-title" style="color: white;">{{ restaurant["name"]}}</h5>
                     <p class="card-text mb-1" style="color: #bbbbbb;"> {{ restaurant["cuisines"] }}</p>
