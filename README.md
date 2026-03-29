@@ -13,16 +13,7 @@ Only one important assumption was  made as the task was quite clear.
 One assumption was made is that the API always contains the name, cuisine, rating, address and the logo value. For e.g. I can assume that if there is a restaurant in the postcode, it will definitely include all 4 of these values. If one of these is missing, there could be problems in displaying restaurants properly as detailes for each restaurant is given as one python dictionary.
 
 
-## 3. Design choices
-
-1. First was choosing which stack to work with and which type of interface to build. Since There was a few days to do it, i chose to build a very simple web interface to make interacting with it more intuitive. Python was chosen as the main language as this is what I am most comfortable with. Subsequently, I wanted to try and learn something new so I chose flask for the backend. Flask is lightweight and simple for the backend
-
-2. For the interface, Plain HTML and bootstrap CSS were used. All i did with the html was make a form and search button which would send postcode to the backend and return a list of restaurants. Boostrap css made it very easy to make this list into visual cards. My main inspiration was literally the JET website where you enter a postcode and you get nearby restaurants shown in cards.
-
-3. After completing the main functions of the task i chose pytest to run the unit tests. I used the unittest.mock to write the tests. Although PyUnit was considered - I decided the built in library for this was enough for 4 simple tests.
-
-
-## 4. How to run the program
+## 3. How to run the program
 - Ensure you have Python 3.12+ installed (earlier versions may also work)
 - Install dependencies: `pip install -r requirements.txt`
 - Navigate to the project root directory
@@ -31,10 +22,18 @@ One assumption was made is that the API always contains the name, cuisine, ratin
 - Open your browser and go to: `http://127.0.0.1:5000/`
 - Enter a postcode to test the program
 
-## 5. How to run the unit tests
+## 4. How to run the unit tests
 - Navigate to the project root directory
 - Run: `pytest tests/test_backend.py`
 - If `pytest` is not recognised, run: `python -m pytest tests/test_backend.py`
+
+## 5. Design choices
+
+1. First was choosing which stack to work with and which type of interface to build. Since There was a few days to do it, i chose to build a very simple web interface to make interacting with it more intuitive. Python was chosen as the main language as this is what I am most comfortable with. Subsequently, I wanted to try and learn something new so I chose flask for the backend. Flask is lightweight and simple for the backend
+
+2. For the interface, Plain HTML and bootstrap CSS were used. All i did with the html was make a form and search button which would send postcode to the backend and return a list of restaurants. Boostrap css made it very easy to make this list into visual cards. My main inspiration was literally the JET website where you enter a postcode and you get nearby restaurants shown in cards.
+
+3. After completing the main functions of the task i chose pytest to run the unit tests. I used the unittest.mock to write the tests. Although PyUnit was considered - I decided the built in library for this was enough for 4 simple tests.
 
 ## 6. How AI was used
 - ai use was kept to a minimum in this project as it was quite simple. the main hurdle was to learn something new with flask, bootstrap and pytest. AI was mainly used as a learning resource for e.g. asking about syntax, debugging parts of code and explaining the why behind new things I was learning for flask/pytest.
@@ -49,3 +48,8 @@ One assumption was made is that the API always contains the name, cuisine, ratin
     - Youtube
     - geeksforgeeks
     - official documentation of the corresponding libraries/frameworks
+
+## 7. Trade-offs and challenges
+- Initially I decided that it would be a command line interface as I would not have to bother with the front end. However after writing the backend logic, the front end task was maybe 2 hours worth of extra work. The web app interface would also make it more visually appealing and easier to work with. Learning bootstrap was a slight challenge but because interface is still so simple I wrote all the css code inline HTML.
+- I had considered using something like plain PHP as it supports web development natively with no requirements for a web frameowrk. I also have some experience with PHP but decided to use and learn flask for python instead.
+- learning flask and unittesting libraries in a short period of time was a a little challenging. Specifically learning mock tests were more challenging.
