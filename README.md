@@ -1,23 +1,25 @@
 # Restaurants near you - JET
 
+A Flask web app that searches UK restaurants by postcode using the Just Eat API, displaying results as Bootstrap cards.
+
 ## 1. The goal of the task
--
+
 The main goal of the task is to access the API end point given, and then access the first 10 restaurants corresponding to the given postcode by user and display each restaurants attributes. For e.g. name, cuisine, address, rating
 
 ## 2. Assumptions made for the task
--
-Not a lot of assumptions were made as the task was quite clear. 
 
-However one assumption that was made is that the API always contains the name, cuisine, rating, address and the logo value. For e.g. I can assume that if there is a restaurant in the postcode, it will definitely include all 4 of these values. If one of these is missing, there could be problems in displaying restaurants properly as detailes for each restaurant is given as one python dictionary.
+Only one important assumption was  made as the task was quite clear. 
+
+One assumption was made is that the API always contains the name, cuisine, rating, address and the logo value. For e.g. I can assume that if there is a restaurant in the postcode, it will definitely include all 4 of these values. If one of these is missing, there could be problems in displaying restaurants properly as detailes for each restaurant is given as one python dictionary.
 
 
 ## 3. Design choices
--
+
 1. First was choosing which stack to work with and which type of interface to build. Since There was a few days to do it, i chose to build a very simple web interface to make interacting with it more intuitive. Python was chosen as the main language as this is what I am most comfortable with. Subsequently, I wanted to try and learn something new so I chose flask for the backend. Flask is lightweight and simple for the backend
 
 2. For the interface, Plain HTML and bootstrap CSS were used. All i did with the html was make a form and search button which would send postcode to the backend and return a list of restaurants. Boostrap css made it very easy to make this list into visual cards. My main inspiration was literally the JET website where you enter a postcode and you get nearby restaurants shown in cards.
 
-3. After completing the main functions of the task i chose pytest with appropriate python libraries for unit testing.
+3. After completing the main functions of the task i chose pytest to run the unit tests. I used the unittest.mock to write the tests. Although PyUnit was considered - I decided the built in library for this was enough for 4 simple tests.
 
 
 ## 4. How to run the program
@@ -42,3 +44,8 @@ However one assumption that was made is that the API always contains the name, c
 - Finally AI was also used to help with formatting the readme.
 
 - Main AI tools used were Claude ai and chatGPT (basic web versions).
+
+- Learning resources include 
+    - Youtube
+    - geeksforgeeks
+    - official documentation of the corresponding libraries/frameworks
